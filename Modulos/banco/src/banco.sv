@@ -14,7 +14,7 @@ logic [63:0] registro [31:0];
 assign RD1 = A1 == 0 ? 0 : registro[A1];
 assign RD2 = A2 == 0 ? 0 : registro[A2];
 
-//If  enable is asserted, then WD writes data to A3 on posedge of clk 
+
 always @(posedge clk) 
 begin 
     if (w_enable && A3 !=0)
