@@ -1,10 +1,10 @@
 `timescale 1ns / 1ps
 
 module ALU_TOP (
-    input logic [1:0] ALUSrcA, // Entradas de 2 bits para A
-    input logic [1:0] ALUSrcB, // Entradas de 2 bits para B
+    input logic [31:0] ALUSrcA, // Entradas de 2 bits para A
+    input logic [31:0] ALUSrcB, // Entradas de 2 bits para B
     input logic [2:0] ALUControl, // Control de operación de 3 bits
-    output logic [2:0] ALUResult // Salida de 3 bits
+    output logic [32:0] ALUResult // Salida de 3 bits
 );
 
 always_comb begin
