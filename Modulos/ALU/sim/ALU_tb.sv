@@ -3,9 +3,9 @@
 module ALU_TOP_tb;
         
     // Entradas y salidas
-    logic [31:0] ALUSrcA, ALUSrcB;   // Operandos A y B de 32 bits
+    logic [63:0] ALUSrcA, ALUSrcB;   // Operandos A y B de 32 bits
     logic [2:0] ALUControl;         // Señal de control de operación (3 bits)
-    logic [32:0] ALUResult;                  // Resultado (33 bits)
+    logic [63:0] ALUResult;                  // Resultado (33 bits)
 
     // Instanciación del módulo ALU_TOP
     ALU_TOP uut (
