@@ -2,7 +2,7 @@
 module Imm(
     input logic [31:0] inst,
     input logic [2:0] sel,
-    output logic  [31:0] imm
+    output logic  [63:0] imm
 );
 
 localparam TYPE_I = 0 ;
@@ -18,7 +18,7 @@ always@(*) begin
         begin //Tipo S
             imm[4:0] = inst[11:7];
             imm[11:5] = inst[31:25];
-            imm[31:12] = $signed(inst[31]);//extension de signo 
+            imm[63:12] = $signed(inst[31]);//extension de signo 
         end
         TYPE_SB: 
         begin //Tipo SB
@@ -27,12 +27,12 @@ always@(*) begin
                 imm[10:5] = inst[30:25];
                 imm[11] = inst[7];
                 imm[12] = inst[31];
-                imm[31:13] = $signed(inst[31]);
+                imm[63:13] = $signed(inst[31]);
         end
         TYPE_U: 
         begin // Tipo U
             imm[11:0]= 12'b000000000000;
-            imm[31:12] = inst[31:12];
+            imm[63:12] = inst[31:12];
         end
         TYPE_UJ: 
         begin // Tipo UJ
@@ -40,7 +40,7 @@ always@(*) begin
             imm[10:1] = inst[30:21];
             imm[11] = inst[20];
             imm[19:12] = inst[19:12];
-            imm[31:20] = $signed(inst[31]);
+            imm[63:20] = $signed(inst[31]);
         end
         default: imm = 0;
     endcase
