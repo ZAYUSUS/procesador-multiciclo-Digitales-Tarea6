@@ -5,5 +5,5 @@ module 2to1_1 (
     output logic  [63:0] out
 );
 
-assign out = (~s & a) | (s & b);
+    assign out = ( ~{64{s}} & a ) | ( {64{s}} & b );
 endmodule 
