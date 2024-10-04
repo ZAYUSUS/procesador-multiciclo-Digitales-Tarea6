@@ -10,7 +10,7 @@ module 3to1_1 (
             2'b00: out = a;
             2'b01: out = b;
             2'b10: out = c;
-            default: out = 1'bx; // Caso por defecto, salida indeterminada
+            default: out = {64{1'bx}}; // Caso por defecto, salida indeterminada
         endcase
     end
 
