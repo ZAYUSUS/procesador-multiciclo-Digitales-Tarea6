@@ -1,9 +1,9 @@
 module register_file (
     input  clk;
-    input  w_enable; 
-    input  [4:0] A1;
-    input  [4:0] A2;
-    input  [4:0] A3;  // write port 
+    input  Regwrite; 
+    input  [4:0] Rs1;
+    input  [4:0] Rs2;
+    input  [4:0] WR;  // write port 
     input  [63:0] WD;
     output [63:0] RD1;
     output [63:0] RD2; 

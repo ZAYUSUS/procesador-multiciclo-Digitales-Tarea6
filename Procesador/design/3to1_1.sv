@@ -1,10 +1,8 @@
 `timescale 1ns / 1ps
 module 3to1_1 (
-    input logic a,
-    input logic b,
-    input logic c,
+    input logic [63:0] a,b,c
     input logic [1:0] s,
-    output logic out
+    output logic [63:0] out
 );
 
     always_comb begin
