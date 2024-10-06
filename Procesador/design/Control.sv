@@ -29,6 +29,7 @@ assign opcode = inst[6:0];
 always @(*) begin
     case (opcode)
         R : begin //detects a R type instruction(add,sub,or,and)
+                //aquí algo cambia con el funct 3 o el funct 7, estos creo que eligen que funcion hacer
             MemtoReg <=;
             Regwrite<=;
             Irwrite<=;

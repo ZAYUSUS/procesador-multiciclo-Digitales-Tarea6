@@ -1,5 +1,6 @@
 module Procesador (
-    input logic clk
+    input logic clk,
+    output logic [63:0] PC
     );
 //----variables para testbench------
 
@@ -38,8 +39,7 @@ reg [4:0] Rs1;
 reg [4:0] Rs2;
 reg zero = 0;
 
-reg [63:0] PC;
-wire [63:0] PC_aux;
+wire [63:0] Result;
 
 wire [63:0] WD_aux;
 reg [63:0] WD;
@@ -84,7 +84,7 @@ wire [63:0] data;
     .b(Alout),
     .c(Mem_reg),
     .s(ResultSrc),
-    .out(PC_aux)
+    .out(Result)
 ;)
 2to1_1 mux_Write_Data(
     .a(Result),
@@ -94,7 +94,7 @@ wire [63:0] data;
 );
 
 //----------------------------------------------
-assign PC<=PC_aux;
+assign PC<=Result;
 assign WD<=WD_aux;
 
 memoria_datos m0(
