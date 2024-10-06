@@ -11,10 +11,6 @@ module Procesador_tb ();
         .clk(clk)
     )
 
-    task automatic Memoria_check();
-        
-    endtask //automatic
-
     initial begin
         clk =0;
     end

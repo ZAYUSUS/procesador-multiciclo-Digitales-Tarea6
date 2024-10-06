@@ -1,9 +1,8 @@
 module Procesador (
-    input logic clk,
-    output logic pc,
+    input logic clk
     );
 //----variables para testbench------
-//----------Tipos de intrucciones
+
 
 //----------control---------------
 wire MemtoReg;
@@ -19,17 +18,17 @@ wire  [1:0] ImmSrc;
 wire [1:0] ResultSrc;
 Control c0(
     .inst(inst),
-    .MemtoReg(),
-    .Regwrite(),
-    .Irwrite(),
-    .PCwrite(),
-    .AdrSrc(),
-    .MemWrite(),
-    .ALUSrcA(),
-    .ALUSrcB(),
-    .ALUControl(),
-    .ImmSrc(),
-    .ResultSrc()
+    .MemtoReg(MemtoReg),
+    .Regwrite(Regwrite),
+    .Irwrite(Irwrite),
+    .PCwrite(PCwrite),
+    .AdrSrc(AdrSrc),
+    .MemWrite(MemWrite),
+    .ALUSrcA(ALUSrcA),
+    .ALUSrcB(ALUSrcB),
+    .ALUControl(ALUControl),
+    .ImmSrc(ImmSrc),
+    .ResultSrc(ResultSrc)
 );
 //--------------Extras----------
 wire inst;
