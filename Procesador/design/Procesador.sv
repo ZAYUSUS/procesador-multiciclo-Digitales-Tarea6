@@ -1,5 +1,8 @@
 module Procesador (
-    input logic clk);
+    input logic clk,
+    output logic );
+//----variables para testbench------
+
 //----------control---------------
 wire [63:0] inst;
 reg [2:0] ALUControl;
