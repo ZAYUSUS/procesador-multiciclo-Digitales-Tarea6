@@ -1,6 +1,6 @@
-`timescale 1ns / 1ps
-module 3to1_1 (
-    input logic [63:0] a,b,c
+
+module Mux3_1 (
+    input logic [63:0] a,b,c,
     input logic [1:0] s,
     output logic [63:0] out
 );

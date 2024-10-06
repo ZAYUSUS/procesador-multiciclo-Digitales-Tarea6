@@ -1,7 +1,8 @@
+
 module Procesador (
     input logic clk,
     output logic [63:0] PC
-    );
+);
 //----variables para testbench------
 
 
@@ -32,20 +33,23 @@ Control c0(
     .ResultSrc(ResultSrc)
 );
 //--------------Extras----------
-wire inst;
+
 reg [4:0] WR;
+reg [63:0] four = 4;
 
 reg [4:0] Rs1;
 reg [4:0] Rs2;
-reg zero = 0;
+reg [63:0] zero = 0;
+reg [63:0] actualPC;
+reg [63:0] Mem_reg;
 
 wire [63:0] Result;
 
 wire [63:0] WD_aux;
 reg [63:0] WD;
 
-wire [63:0] WE_aux;
-reg  [63:0] WE;
+wire WE_aux;
+reg   WE;
 
 wire [63:0] Imm;
 wire [63:0] RD1;
@@ -55,57 +59,57 @@ wire [63:0] ALU_A;
 wire [63:0] ALU_B;
 wire [63:0] ALU_out;
 
-
+wire [63:0] Address;
 wire [63:0] data;
 //------------------mux--------------
-
-2to1_1 mux_PC(
+assign actualPC = PC;
+Mux2_1 mux_PC(
     .a(PC),
     .b(Result),
     .s(AdrSrc),
-    .out(Data)
+    .out(Address)
 );
-3to1_1 mux_AluSrcA(
+Mux3_1 mux_AluSrcA(
     .a(PC),
-    .b(ActualPC),
+    .b(actualPC),
     .c(RD1),
     .s(ALUSrcA),
     .out(ALU_A)
 );
-3to1_1 mux_AluSrcB(
+Mux3_1 mux_AluSrcB(
     .a(RD2),
-    .b(4),
-    .c(imm),
+    .b(four),
+    .c(Imm),
     .s(ALUSrcB),
     .out(ALU_B)
 );
-3to1_1 mux_Out(
+Mux3_1 mux_Out(
     .a(zero),
-    .b(Alout),
+    .b(ALU_out),
     .c(Mem_reg),
     .s(ResultSrc),
     .out(Result)
-;)
-2to1_1 mux_Write_Data(
+);
+Mux2_1 mux_Write_Data(
     .a(Result),
-    .b(MemWrite),
+    .b(Mem_reg),
     .s(MemtoReg),
     .out(WD_aux)
 );
 
 //----------------------------------------------
-assign PC<=Result;
-assign WD<=WD_aux;
+assign PC=Result;
+assign WD=WD_aux;
 
 memoria_datos m0(
     .clk(clk),//input
     .we(WE),//input
-    .a(PC),//input [63:0]
+    .a(Address),//input [63:0]
     .wd(WD),//input [63:0]
     .rd(data)
 );//output [63:0]
 memoria_instrucciones m1(
-    .a(PC),// input [5:0]
+    .a(data),// input [5:0]
     .rd(inst)// output [63:0]
 );
 

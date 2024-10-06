@@ -30,95 +30,95 @@ always @(*) begin
     case (opcode)
         R : begin //detects a R type instruction(add,sub,or,and)
                 //aquí algo cambia con el funct 3 o el funct 7, estos creo que eligen que funcion hacer
-            MemtoReg <=;
-            Regwrite<=;
-            Irwrite<=;
-            PCwrite<=;
-            AdrSrc<=;
-            MemWrite<=;
-            ALUSrcA<=;
-            ALUSrcB<=;
-            ALUControl<=;
+            MemtoReg <=0;
+            Regwrite<=0;
+            Irwrite<=0;
+            PCwrite<=0;
+            AdrSrc<=0;
+            MemWrite<=0;
+            ALUSrcA<=0;
+            ALUSrcB<=0;
+            ALUControl<=0;
             ImmSrc<=0;
-            ResultSrc<=;
+            ResultSrc<=0;
         end
         ADDI : begin
-            MemtoReg <=;
-            Regwrite<=;
-            Irwrite<=;
-            PCwrite<=;
-            AdrSrc<=;
-            MemWrite<=;
-            ALUSrcA<=;
-            ALUSrcB<=;
-            ALUControl<=;
+            MemtoReg <=0;
+            Regwrite<=0;
+            Irwrite<=0;
+            PCwrite<=0;
+            AdrSrc<=0;
+            MemWrite<=0;
+            ALUSrcA<=0;
+            ALUSrcB<=0;
+            ALUControl<=0;
             ImmSrc<=0;
-            ResultSrc<=;
+            ResultSrc<=0;
         end
         JAL : begin
-            MemtoReg <=;
-            Regwrite<=;
-            Irwrite<=;
-            PCwrite<=;
-            AdrSrc<=;
-            MemWrite<=;
-            ALUSrcA<=;
-            ALUSrcB<=;
-            ALUControl<=;
+            MemtoReg <=0;
+            Regwrite<=0;
+            Irwrite<=0;
+            PCwrite<=0;
+            AdrSrc<=0;
+            MemWrite<=0;
+            ALUSrcA<=0;
+            ALUSrcB<=0;
+            ALUControl<=0;
             ImmSrc<=0;
-            ResultSrc<=;
+            ResultSrc<=0;
         end
         AUIPC : begin
-            MemtoReg <=;
-            Regwrite<=;
-            Irwrite<=;
-            PCwrite<=;
-            AdrSrc<=;
-            MemWrite<=;
-            ALUSrcA<=;
-            ALUSrcB<=;
-            ALUControl<=;
+            MemtoReg <=0;
+            Regwrite<=0;
+            Irwrite<=0;
+            PCwrite<=0;
+            AdrSrc<=0;
+            MemWrite<=0;
+            ALUSrcA<=0;
+            ALUSrcB<=0;
+            ALUControl<=0;
             ImmSrc<=0;
-            ResultSrc<=;
+            ResultSrc<=0;
         end
         B : begin // detects a B type instruction(bne,beq)
-            MemtoReg <=;
-            Regwrite<=;
-            Irwrite<=;
-            PCwrite<=;
-            AdrSrc<=;
-            MemWrite<=;
-            ALUSrcA<=;
-            ALUSrcB<=;
-            ALUControl<=;
+            MemtoReg <=0;
+            Regwrite<=0;
+            Irwrite<=0;
+            PCwrite<=0;
+            AdrSrc<=0;
+            MemWrite<=0;
+            ALUSrcA<=0;
+            ALUSrcB<=0;
+            ALUControl<=0;
             ImmSrc<=0;
-            ResultSrc<=;
+            ResultSrc<=0;
         end
         SD : begin
-            MemtoReg <=;
-            Regwrite<=;
-            Irwrite<=;
-            PCwrite<=;
-            AdrSrc<=;
-            MemWrite<=;
-            ALUSrcA<=;
-            ALUSrcB<=;
-            ALUControl<=;
+            MemtoReg <=0;
+            Regwrite<=0;
+            Irwrite<=0;
+            PCwrite<=0;
+            AdrSrc<=0;
+            MemWrite<=0;
+            ALUSrcA<=0;
+            ALUSrcB<=0;
+            ALUControl<=0;
             ImmSrc<=0;
-            ResultSrc<=;
+            ResultSrc<=0;
         end
         LD : begin
-            MemtoReg <=;
-            Regwrite<=;
-            Irwrite<=;
-            PCwrite<=;
-            AdrSrc<=;
-            MemWrite<=;
-            ALUSrcA<=;
-            ALUSrcB<=;
-            ALUControl<=;
+            MemtoReg <=0;
+            Regwrite<=0;
+            Irwrite<=0;
+            PCwrite<=0;
+            AdrSrc<=0;
+            MemWrite<=0;
+            ALUSrcA<=0;
+            ALUSrcB<=0;
+            ALUControl<=0;
             ImmSrc<=0;
-            ResultSrc<=;
+            ResultSrc<=0;
         end
     endcase
 end

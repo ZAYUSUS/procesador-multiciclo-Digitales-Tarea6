@@ -10,16 +10,17 @@ module Procesador_tb ();
     Procesador p0(
         .clk(clk),
         .PC(PC)
-    )
-    task automatic Prueba();
-        $$display("Testing.........\n");
+    );
+    task Prueba();
+        $display("Testing.........\n");
         $monitor("PC = %d",PC);
-        #20
+        #10 ;
     endtask //automatic
 
     initial begin
         clk =0;
         Prueba();
+        #100 $finish;
     end
     initial begin
         $dumpfile("Procesador_tb.vcd");
