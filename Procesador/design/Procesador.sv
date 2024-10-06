@@ -1,20 +1,43 @@
 module Procesador (
     input logic clk,
-    output logic );
+    output logic pc,
+    );
 //----variables para testbench------
+//----------Tipos de intrucciones
 
 //----------control---------------
-wire [63:0] inst;
-reg [2:0] ALUControl;
-reg  [1:0] ImmSrc;
-reg [1:0] ALUSrcA;
-reg [1:0] ALUSrcB;
-wire [63:0] ALU_A;
-wire [63:0] ALU_B;
-wire [63:0] ALU_out;
+wire MemtoReg;
+wire Regwrite;
+wire Irwrite;
+wire PCwrite;
+wire AdrSrc;
+wire MemWrite;
+wire [1:0] ALUSrcA;
+wire [1:0] ALUSrcB;
+wire [2:0] ALUControl;
+wire  [1:0] ImmSrc;
+wire [1:0] ResultSrc;
+Control c0(
+    .inst(inst),
+    .MemtoReg(),
+    .Regwrite(),
+    .Irwrite(),
+    .PCwrite(),
+    .AdrSrc(),
+    .MemWrite(),
+    .ALUSrcA(),
+    .ALUSrcB(),
+    .ALUControl(),
+    .ImmSrc(),
+    .ResultSrc()
+);
+//--------------Extras----------
+wire inst;
+reg [4:0] WR;
+
+reg [4:0] Rs1;
+reg [4:0] Rs2;
 reg zero = 0;
-reg [1:0] ResultSrc;
-reg [5:0] Opcode;
 
 reg [63:0] PC;
 wire [63:0] PC_aux;
@@ -26,23 +49,17 @@ wire [63:0] WE_aux;
 reg  [63:0] WE;
 
 wire [63:0] Imm;
-
 wire [63:0] RD1;
 wire [63:0] RD2;
+wire [63:0] inst;
+wire [63:0] ALU_A;
+wire [63:0] ALU_B;
+wire [63:0] ALU_out;
 
-reg [4:0] WR;
-
-reg [4:0] Rs1;
-reg [4:0] Rs2;
 
 wire [63:0] data;
 //------------------mux--------------
-reg MemtoReg;
-reg Regwrite;
-reg Irwrite;
-reg PCwrite;
-reg AdrSrc;
-reg MemWrite;
+
 2to1_1 mux_PC(
     .a(PC),
     .b(Result),
