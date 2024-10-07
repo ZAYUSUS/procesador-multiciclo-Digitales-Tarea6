@@ -1,12 +1,14 @@
 
 module Procesador (
     input logic clk,
-    output logic [63:0] PC
+    input logic reset,
+    output logic [63:0] PC1
 );
-//----variables para testbench------
 
 
 //----------control---------------
+reg [3:0] ALUFlags;
+wire [2:0] MemSize;
 wire MemtoReg;
 wire Regwrite;
 wire Irwrite;
@@ -18,19 +20,24 @@ wire [1:0] ALUSrcB;
 wire [2:0] ALUControl;
 wire  [1:0] ImmSrc;
 wire [1:0] ResultSrc;
-Control c0(
-    .inst(inst),
-    .MemtoReg(MemtoReg),
-    .Regwrite(Regwrite),
-    .Irwrite(Irwrite),
-    .PCwrite(PCwrite),
+
+assign ALUFlags = (ALU_out==0) ? 4'b0100 : 4'b0000;
+MulticicloControl c0(
+    .clk(clk),
+    .reset(reset),
+    .Instr(inst),
+    .ALUFlags(ALUFlags),
+    .PCWrite(PCwrite),
     .AdrSrc(AdrSrc),
     .MemWrite(MemWrite),
+    .IRWrite(Irwrite),
+    .ResultSrc(ResultSrc),
     .ALUSrcA(ALUSrcA),
     .ALUSrcB(ALUSrcB),
-    .ALUControl(ALUControl),
     .ImmSrc(ImmSrc),
-    .ResultSrc(ResultSrc)
+    .RegWrite(Regwrite),
+    .ALUControl(ALUControl),
+    .MemSize(MemSize)
 );
 //--------------Extras----------
 
@@ -63,6 +70,8 @@ wire [63:0] Address;
 wire [63:0] data;
 //------------------mux--------------
 assign actualPC = PC;
+assign Rs1 = inst[19:15];
+assign Rs2 = inst[24:20];
 Mux2_1 mux_PC(
     .a(PC),
     .b(Result),
@@ -90,7 +99,7 @@ Mux3_1 mux_Out(
     .s(ResultSrc),
     .out(Result)
 );
-Mux2_1 mux_Write_Data(
+Mux2_1 mux_mem_Data(
     .a(Result),
     .b(Mem_reg),
     .s(MemtoReg),
@@ -106,11 +115,11 @@ memoria_datos m0(
     .we(WE),//input
     .a(Address),//input [63:0]
     .wd(WD),//input [63:0]
-    .rd(data)
+    .rd(data)//output
 );//output [63:0]
 memoria_instrucciones m1(
     .a(data),// input [5:0]
-    .rd(inst)// output [63:0]
+    .rd(inst)
 );
 
 ALU_TOP a0(

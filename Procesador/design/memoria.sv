@@ -12,12 +12,13 @@ module memoria_datos(input         clk, we, // We = Write data
       RAM[a[31:2]] <= wd;
 endmodule
 
-module memoria_instrucciones(input  [63:0] a,
-            output [63:0] rd);
+module memoria_instrucciones(
+            input  [63:0] a,
+            output [63:0] rd
+);
   reg  [63:0] RAM[63:0];
   reg [5:0] dir;
   reg LSB ;
-
   assign LSB = (a%2==0) ? 1:0;//select part of instruction
   assign dir = (a%2==0) ? a/2 : (a-1)/2;//  row of memory
   assign rd = (LSB) ? RAM[dir][31:0]:RAM[dir][63:32]; // word aligned

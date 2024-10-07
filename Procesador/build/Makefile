@@ -20,7 +20,7 @@ TOP_DESIGN = Procesador
 TOP_TB     = Procesador_tb
 
 #nombre del vcd que va a generar el tb
-VCD_FILE = Procesador.tb.vcd
+VCD_FILE = Procesador_tb.vcd
 
 
 all: synth test
@@ -39,7 +39,6 @@ test: ${SOURCES} ${TESTBENCH}
 #Visualizar los diagramas de tiempo con GTKWave
 wv: ${VCD_FILE}
 	gtkwave ${VCD_FILE} 
-        
 
 .PHONY: load  wv
 .INTERMEDIATE: ${PROYECT}_pnr.json ${PROYECT}.json
