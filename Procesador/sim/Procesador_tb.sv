@@ -12,7 +12,7 @@ module Procesador_tb ();
     Procesador p0(
         .clk(clk),
         .reset(reset),
-        .PC(PC)
+        .PC1(PC)
     );
     task Memoria_Cargada();
         $display("RAM CARGADA.......\n");
@@ -22,22 +22,22 @@ module Procesador_tb ();
     endtask
     task Prueba();
         $display("Testing.........\n");
-        $monitor("PC = %d",PC);
+
         #10 ;
     endtask //automatic
 
     initial begin
         clk =0;
+        $monitor("PC = %d",PC);
         Prueba();
         Memoria_Cargada();
-        #1000 $finish;
+        #100 $finish;
     end
     initial begin
         $dumpfile("Procesador_tb.vcd");
         $dumpvars(0,Procesador_tb);
     end
     initial begin
-        $display("Loading rom....");
-        $readmemh("../design/mem.mem", RAM);
+        $readmemh("../design/mem.mem", RAM,0,5);
     end
 endmodule

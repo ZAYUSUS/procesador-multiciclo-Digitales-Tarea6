@@ -1,9 +1,10 @@
 module MulticicloControl (
     input logic clk,
     input logic reset,
-    input logic [31:0] Instr,  // Full instruction
+    input logic [63:0] Instr,  // Full instruction
     input logic [3:0] ALUFlags,  // Negative, Zero, Carry, Overflow
     
+    output logic MemtoReg,
     output logic PCWrite,
     output logic AdrSrc,
     output logic MemWrite,
@@ -13,7 +14,7 @@ module MulticicloControl (
     output logic [1:0] ALUSrcB,
     output logic [2:0] ImmSrc,
     output logic RegWrite,
-    output logic [3:0] ALUControl,
+    output logic [2:0] ALUControl,
     output logic [1:0] MemSize
 );
 
@@ -34,7 +35,7 @@ module MulticicloControl (
     end
 
     // Next state logic
-    always_comb begin
+    always @(posedge clk) begin
         next_state = current_state;  // Default 
         
         case (current_state)
@@ -68,24 +69,14 @@ module MulticicloControl (
     end
 
     // Control signals
-    always_comb begin
-        PCWrite = 1'b0;
-        AdrSrc = 1'b0;
-        MemWrite = 1'b0;
-        IRWrite = 1'b0;
-        ResultSrc = 2'b00;
-        ALUSrcA = 2'b00;
-        ALUSrcB = 2'b00;
-        ImmSrc = 3'b000;
-        RegWrite = 1'b0;
-        ALUControl = 4'b0000;
-        MemSize = 2'b11;  // Default to word size
+    always @(posedge clk) begin
 
         case (current_state)
             FETCH: begin
                 PCWrite = 1'b1; 
                 IRWrite = 1'b1;
                 AdrSrc = 1'b0; 
+                MemtoReg = 0;
                 ALUSrcA = 2'b00; 
                 ALUSrcB = 2'b10;
                 ALUControl = 4'b0000;  // ADD
@@ -155,6 +146,20 @@ module MulticicloControl (
             WRITEBACK_MEM: begin
                 RegWrite = 1'b1;
                 ResultSrc = 2'b01;
+            end
+            default : begin 
+                PCWrite = 1'b0;
+                AdrSrc = 1'b0;
+                MemWrite = 1'b0;
+                IRWrite = 1'b0;
+                ResultSrc = 2'b00;
+                ALUSrcA = 2'b00;
+                ALUSrcB = 2'b00;
+                ImmSrc = 3'b000;
+                RegWrite = 1'b0;
+                ALUControl = 4'b0000;
+                MemtoReg=0;
+                MemSize = 2'b11;  // Default to word size
             end
         endcase
     end

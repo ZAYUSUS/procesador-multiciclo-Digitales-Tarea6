@@ -1,7 +1,7 @@
 
 module Imm(
     input logic [63:0] inst,
-    input logic [1:0] sel,
+    input logic [2:0] sel,
     output logic  [63:0] imm
 );
 
