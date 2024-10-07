@@ -45,11 +45,10 @@ MulticicloControl c0(
 reg [4:0] WR;
 reg [63:0] four = 4;
 
-reg [3:0] Rs1;
-reg [3:0] Rs2;
+
 reg [63:0] zero = 0;
 reg [63:0] actualPC;
-reg [3:0] rd;
+
 
 reg [63:0] Mem_data_reg;
 
@@ -61,6 +60,9 @@ reg [63:0] WD;
 wire WE_aux;
 reg   WE;
 
+wire [3:0] Rs1;
+wire [3:0] Rs2;
+wire [3:0] rd;
 wire [63:0] Mem_data_out;
 wire [63:0] Imm;
 wire [63:0] RD1;
@@ -95,11 +97,12 @@ memoria_datos mem_data(
 );
 memoria_instrucciones mem_inst(
     .Address(RD),
-    .rd(inst)// instruction read
+    .inst(inst),// instruction read
+    .Rs1(Rs1),
+    .Rs2(Rs2),
+    .rd(rd)
 );
-assign Rs1 = inst[19:15];
-assign Rs2 = inst[24:20];
-assign rd  = inst[11:7];
+
 register_file reg_inst(
     .clk(clk),
     .Regwrite(Regwrite),

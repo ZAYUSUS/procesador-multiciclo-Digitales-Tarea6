@@ -14,15 +14,20 @@ endmodule
 
 module memoria_instrucciones(
             input  [63:0] Address,
-            output [63:0] rd
+            output [63:0] inst,
+            output [3:0] Rs1,
+            output [3:0] Rs2,
+            output [3:0] rd
 );
   reg  [63:0] RAM[63:0];
   reg [5:0] dir;
   reg LSB ;
   assign LSB = (Address%2==0) ? 1:0;//select part of instruction
   assign dir = (Address%2==0) ? Address/2 : (Address-1)/2;//  row of memory
-  assign rd = (LSB) ? RAM[dir][31:0]:RAM[dir][63:32]; // word aligned
-
+  assign inst = (LSB) ? RAM[dir][31:0]:RAM[dir][63:32]; // word aligned
+  assign Rs1 = inst[19:15];
+  assign Rs2 = inst[24:20];
+  assign rd  = inst[11:7];
   //                    low           upper
   initial begin
         $display("Loading rom.");
