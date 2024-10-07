@@ -1,7 +1,7 @@
 module MulticicloControl (
     input logic clk,
     input logic reset,
-    input logic [63:0] Instr,  // Full instruction
+    input logic [31:0] Instr,  // Full instruction
     input logic [3:0] ALUFlags,  // Negative, Zero, Carry, Overflow
     
     output logic MemtoReg,
@@ -65,13 +65,12 @@ module MulticicloControl (
                 next_state = WRITEBACK_MEM;
             MEMORY_STORE, WRITEBACK_REG, WRITEBACK_MEM:
                 next_state = FETCH;
-            default : next_state = current_state;  // Default 
+            default : next_state = FETCH;  // Default 
         endcase
     end
 
     // Control signals
     always @(posedge clk) begin
-
         case (current_state)
             FETCH: begin
                 PCWrite = 1'b1; 

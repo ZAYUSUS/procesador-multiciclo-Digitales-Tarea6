@@ -67,7 +67,7 @@ wire [63:0] Mem_data_out;
 wire [63:0] Imm;
 wire [63:0] RD1;
 wire [63:0] RD2;
-wire [63:0] inst;
+wire [31:0] inst;
 wire [63:0] ALU_A;
 wire [63:0] ALU_B;
 wire [63:0] ALU_out;
@@ -76,13 +76,16 @@ wire [63:0] Address;
 wire [63:0] data;
 wire [63:0] RD;
 //------------------Variables--------------
-reg [63:0] PC ;
+wire [63:0] PC ;
 assign actualPC = PC;
 assign PC1 = PC;
-
+PC_control pc_control(
+    .PCwrite(PCwrite),
+    .clk(clk),
+    .PC(PC)
+);
 
 //---------- Componentes ----------
-assign PC = ( PCwrite) ? PC+4 : 0;
 Mux2_1 Mux_PC(
     .a(PC),//input 64 bits
     .b(Result),//input 64 bits

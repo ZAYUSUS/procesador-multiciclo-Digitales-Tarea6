@@ -22,18 +22,18 @@ module Procesador_tb ();
     endtask
     task Prueba();
         $display("Testing.........\n");
-
         #10 ;
     endtask //automatic
 
     initial begin
         clk =0;
         reset=1;
-        $monitor("PC = %d",PC);
         #1
         reset=0;
-        Prueba();
         Memoria_Cargada();
+        $monitor("PC = %d",PC);
+        Prueba();
+
         #100 $finish;
     end
     initial begin
