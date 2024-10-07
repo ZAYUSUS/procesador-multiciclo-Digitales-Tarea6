@@ -36,7 +36,7 @@ module MulticicloControl (
 
     // Next state logic
     always @(posedge clk) begin
-        next_state = current_state;  // Default 
+
         
         case (current_state)
             FETCH: 
@@ -65,6 +65,7 @@ module MulticicloControl (
                 next_state = WRITEBACK_MEM;
             MEMORY_STORE, WRITEBACK_REG, WRITEBACK_MEM:
                 next_state = FETCH;
+            default : next_state = current_state;  // Default 
         endcase
     end
 

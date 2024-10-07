@@ -28,7 +28,10 @@ module Procesador_tb ();
 
     initial begin
         clk =0;
+        reset=1;
         $monitor("PC = %d",PC);
+        #1
+        reset=0;
         Prueba();
         Memoria_Cargada();
         #100 $finish;

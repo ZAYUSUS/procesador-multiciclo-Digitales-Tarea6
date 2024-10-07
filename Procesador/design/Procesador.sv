@@ -82,7 +82,7 @@ assign PC1 = PC;
 
 
 //---------- Componentes ----------
-assign PC = ( PCwrite) ? PC+4 : PC+0;
+assign PC = ( PCwrite) ? PC+4 : 0;
 Mux2_1 Mux_PC(
     .a(PC),//input 64 bits
     .b(Result),//input 64 bits
