@@ -157,10 +157,9 @@ module MulticicloControl (
             end
         endcase
     end
-
     // ALU Decoder 
     always_comb begin
-        if (current_state == EXECUTE_R || current_state == EXECUTE_I) begin
+        if (current_state == EXECUTE_R | current_state == EXECUTE_I) begin
             case (Instr[14:12])
                 3'b000: ALUControl = (Instr[30] & Instr[5]) ? 4'b0001 : 4'b0000;  // SUB : ADD
                 3'b001: ALUControl = 4'b0101;  // SLL
