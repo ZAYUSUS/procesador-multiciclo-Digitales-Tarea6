@@ -177,6 +177,7 @@ module MulticicloControl (
 
     // Memory size decoder 
     always_comb begin
+        MemSize = 3'b010;
         if (current_state == MEMORY_LOAD) begin
             case (Instr[14:12])
                 3'b000: MemSize = 3'b000;  // LB
@@ -200,3 +201,4 @@ module MulticicloControl (
     end
 
 endmodule
+
