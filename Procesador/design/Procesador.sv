@@ -82,11 +82,15 @@ PC_control pc_control(
     .clk(clk),
     .PC(PC)
 );
+//imprime datos del procesador
 always @(posedge clk)begin
+    if (PC<11) begin
     $display("PC = %d \n",PC);
     $display("Instruccion en uso: %h\n",inst);
-    $display("ALU-A: %d ALU-B: %d ALUResult: %d",ALUSrcA,ALUSrcB,Result);
+    $display("ALU-A: %d ALU-B: %d ALUControl: %d ALUResult: %d",ALUSrcA,ALUSrcB,ALUControl,Result);
     $display("--------------------------------------------------------------");
+    end
+
 end
 //---------- Componentes ----------
 Mux2_1 Mux_PC(
