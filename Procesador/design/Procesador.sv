@@ -49,7 +49,7 @@ reg [63:0] zero = 0;
 reg [63:0] actualPC;
 
 
-reg [63:0] Mem_data_reg;
+wire [63:0] Mem_data_reg;
 
 wire [63:0] Result; // final
 
@@ -84,7 +84,7 @@ PC_control pc_control(
 );
 //imprime datos del procesador
 always @(posedge clk)begin
-    if (PC<11) begin
+    if (PC<15) begin
     $display("PC = %d \n",PC);
     $display("Instruccion en uso: %h\n",inst);
     $display("ALU-A: %d ALU-B: %d ALUControl: %d ALUResult: %d",ALU_A,ALU_B,ALUControl,ALU_out);
@@ -155,6 +155,11 @@ Mux3_1 mux_Result(
     .c(ALU_out),
     .s(ResultSrc),
     .out(Result)
+);
+
+MemDataReg Mem_data_Reg(
+    .inst(isnt),
+    .Mem_data_reg(Mem_data_reg)
 );
 Mux2_1 Mux_MEM(
     .a(Result),//input 64 bits

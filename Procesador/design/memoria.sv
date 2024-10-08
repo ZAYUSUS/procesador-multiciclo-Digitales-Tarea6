@@ -32,7 +32,7 @@ module memoria_instrucciones(
   //                    low           upper
   initial begin
         $display("Loading rom.");
-        $readmemh("../design/mem.mem", RAM,0,5);
+        $readmemh("../design/mem.mem", RAM,0,6);
     end
 endmodule
 //ejemplo memoria

@@ -12,6 +12,7 @@ main:
     jal  ra,sub_func # pasa a la funcion resta
 sub_func:
 	sub t2,s6,s5    # s6 - s5 = 3
+    add t3,s6,s5    # t3 = s6-s5 = 11+8=19
     bne t2,s3,end
 end:
 	sd t2,0(a1)     # guarda 3 en memoria.

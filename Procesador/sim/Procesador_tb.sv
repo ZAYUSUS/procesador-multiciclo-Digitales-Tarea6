@@ -10,7 +10,6 @@ module Procesador_tb ();
 
     Procesador p0(
         .clk(clk),
-        .clk_t(clk_t),
         .reset(reset)
     );
     task Memoria_Cargada();
@@ -40,6 +39,6 @@ module Procesador_tb ();
         $dumpvars(0,Procesador_tb);
     end
     initial begin
-        $readmemh("../design/mem.mem", RAM,0,5);
+        $readmemh("../design/mem.mem", RAM,0,6);
     end
 endmodule
