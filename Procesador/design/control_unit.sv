@@ -67,6 +67,7 @@ module MulticicloControl (
                 next_state = FETCH;
             default : next_state = FETCH;  // Default 
         endcase
+
     end
 
     // Control signals

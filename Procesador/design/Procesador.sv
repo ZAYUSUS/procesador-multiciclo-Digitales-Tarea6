@@ -1,8 +1,7 @@
 
 module Procesador (
     input logic clk,
-    input logic reset,
-    output logic [63:0] PC1
+    input logic reset
 );
 
 
@@ -78,13 +77,17 @@ wire [63:0] RD;
 //------------------Variables--------------
 wire [63:0] PC ;
 assign actualPC = PC;
-assign PC1 = PC;
 PC_control pc_control(
     .PCwrite(PCwrite),
     .clk(clk),
     .PC(PC)
 );
-
+always @(posedge clk)begin
+    $display("PC = %d \n",PC);
+    $display("Instruccion en uso: %h\n",inst);
+    $display("ALU-A: %d ALU-B: %d ALUResult: %d",ALUSrcA,ALUSrcB,Result);
+    $display("--------------------------------------------------------------");
+end
 //---------- Componentes ----------
 Mux2_1 Mux_PC(
     .a(PC),//input 64 bits

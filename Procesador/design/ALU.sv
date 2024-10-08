@@ -12,6 +12,7 @@ always_comb begin
         3'b001: begin
             // Suma: SrcA + SrcB
             ALUResult = ALUSrcA + ALUSrcB;
+
         end
         
         3'b010: begin
@@ -43,6 +44,7 @@ always_comb begin
             ALUResult = 3'b000; 
         end
     endcase
+
 
 end
 

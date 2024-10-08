@@ -4,15 +4,13 @@
 module Procesador_tb ();
     reg logic clk;
     reg logic reset;
-    reg logic [63:0] PC;
     reg [63:0] RAM [63:0];
     
     always #1 clk = ~clk;
 
     Procesador p0(
         .clk(clk),
-        .reset(reset),
-        .PC1(PC)
+        .reset(reset)
     );
     task Memoria_Cargada();
         $display("RAM CARGADA.......\n");
@@ -31,7 +29,7 @@ module Procesador_tb ();
         #1
         reset=0;
         Memoria_Cargada();
-        $monitor("PC = %d",PC);
+
         Prueba();
 
         #100 $finish;
