@@ -1,6 +1,7 @@
 
 module Procesador (
     input logic clk,
+    input logic clk_t,
     input logic reset
 );
 
@@ -83,14 +84,13 @@ PC_control pc_control(
     .PC(PC)
 );
 //imprime datos del procesador
-always @(posedge clk)begin
+always @(posedge clk_t)begin
     if (PC<11) begin
     $display("PC = %d \n",PC);
     $display("Instruccion en uso: %h\n",inst);
-    $display("ALU-A: %d ALU-B: %d ALUControl: %d ALUResult: %d",ALUSrcA,ALUSrcB,ALUControl,Result);
+    $display("ALU-A: %d ALU-B: %d ALUControl: %d ALUResult: %d",ALU_A,ALU_B,ALUControl,ALU_out);
     $display("--------------------------------------------------------------");
     end
-
 end
 //---------- Componentes ----------
 Mux2_1 Mux_PC(
