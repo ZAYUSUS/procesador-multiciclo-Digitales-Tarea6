@@ -99,7 +99,7 @@ module MulticicloControl (
             end
             EXECUTE_I: begin
                 ALUSrcA = 2'b10; 
-                ALUSrcB = 2'b01;
+                ALUSrcB = 2'b10;
                 ImmSrc = 3'b000;
                 ALUControl = 4'b0000;  // ADDI
             end
@@ -120,7 +120,7 @@ module MulticicloControl (
             EXECUTE_JAL: begin
                 ALUSrcA = 2'b01; 
                 ALUSrcB = 2'b10;
-                ImmSrc = 3'b011;
+                ImmSrc = 3'b100;
                 ResultSrc = 2'b10;  // PC + 4
                 PCWrite = 1'b1;
                 RegWrite = 1'b1;
@@ -128,7 +128,7 @@ module MulticicloControl (
             EXECUTE_AUIPC: begin
                 ALUSrcA = 2'b01; 
                 ALUSrcB = 2'b01;
-                ImmSrc = 3'b100;
+                ImmSrc = 3'b011;
                 ALUControl = 4'b0000;  // ADD
             end
             MEMORY_LOAD: begin
