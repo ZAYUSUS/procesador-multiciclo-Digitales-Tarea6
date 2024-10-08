@@ -1,7 +1,6 @@
 
 module Procesador (
     input logic clk,
-    input logic clk_t,
     input logic reset
 );
 
@@ -84,7 +83,7 @@ PC_control pc_control(
     .PC(PC)
 );
 //imprime datos del procesador
-always @(posedge clk_t)begin
+always @(posedge clk)begin
     if (PC<11) begin
     $display("PC = %d \n",PC);
     $display("Instruccion en uso: %h\n",inst);

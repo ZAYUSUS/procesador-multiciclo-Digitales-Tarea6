@@ -3,12 +3,10 @@
 
 module Procesador_tb ();
     reg logic clk;
-    reg logic clk_t;
     reg logic reset;
     reg [63:0] RAM [63:0];
     
     always #2 clk = ~clk;
-    always #1 clk_t=~clk_t;
 
     Procesador p0(
         .clk(clk),
@@ -28,7 +26,6 @@ module Procesador_tb ();
 
     initial begin
         clk =0;
-        clk_t=0;
         reset=1;
         #1
         reset=0;
