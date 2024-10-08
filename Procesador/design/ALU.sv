@@ -9,13 +9,13 @@ module ALU_TOP (
 
 always_comb begin
     case(ALUControl)
-        3'b001: begin
+        3'b000: begin
             // Suma: SrcA + SrcB
             ALUResult = ALUSrcA + ALUSrcB;
 
         end
         
-        3'b010: begin
+        3'b001: begin
             // Resta: SrcA - SrcB
             ALUResult = ALUSrcA - ALUSrcB;
         end
@@ -25,7 +25,7 @@ always_comb begin
             ALUResult = ALUSrcA | ALUSrcB;
         end
         
-        3'b100: begin
+        3'b010: begin
             // AND lógico: SrcA & SrcB
             ALUResult = ALUSrcA & ALUSrcB;
         end

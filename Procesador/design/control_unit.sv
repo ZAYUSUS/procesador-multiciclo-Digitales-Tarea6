@@ -163,6 +163,7 @@ module MulticicloControl (
                 MemSize = 2'b11;  // Default to word size
             end
         endcase
+
     end
 
 endmodule
