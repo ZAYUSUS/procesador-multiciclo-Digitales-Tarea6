@@ -93,13 +93,14 @@ Mux2_1 Mux_PC(
     .out(Address) // 64 bits output
 );
 memoria_datos mem_data(
+    .clk(clk),
     .Address(Address),
     .we(MemWrite),
     .wd(RD2),// write data in data memory,
     .rd(RD)//data read
 );
 memoria_instrucciones mem_inst(
-    .Address(RD),
+    .Address(Address),
     .inst(inst),// instruction read
     .Rs1(Rs1),
     .Rs2(Rs2),
