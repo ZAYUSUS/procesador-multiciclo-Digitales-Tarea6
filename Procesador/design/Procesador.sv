@@ -84,7 +84,7 @@ PC_control pc_control(
 );
 //imprime datos del procesador
 always @(posedge clk)begin
-    if (PC<15) begin
+    if (PC<12) begin
     $display("PC = %d \n",PC);
     $display("Instruccion en uso: %h\n",inst);
     $display("ALU-A: %d ALU-B: %d ALUControl: %d ALUResult: %d",ALU_A,ALU_B,ALUControl,ALU_out);
